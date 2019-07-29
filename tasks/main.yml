@@ -39,6 +39,13 @@
     state: link
   register: sonar_symlink
 
+- name: Set correct user rights
+  file:
+    dest: /usr/local/sonar
+    owner: "{{ sonar_run_user }}"
+    group: "{{ sonar_run_user }}"
+    recurse: yes
+
 - name: Add sonar as init script for service management.
   file:
     src: /usr/local/sonar/bin/linux-x86-64/sonar.sh
